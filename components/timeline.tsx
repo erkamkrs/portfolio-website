@@ -7,8 +7,7 @@ import ScrollTrigger from "gsap/ScrollTrigger"
 interface TimelineContent {
   id?: string | number
   year: string | number
-  title: string
-  body: string
+  [key: string]: any // Support any additional properties
 }
 
 interface TimelineProps {
@@ -94,8 +93,13 @@ export function Timeline({ contents }: TimelineProps) {
                 index % 2 === 0 ? "lg:ml-12 lg:pl-12 text-left" : "lg:mr-12 lg:pr-12"
               } w-[80%] lg:w-[40%]`}
             >
-              <h3 className="font-bold text-xl lg:text-4xl mb-4 leading-2">{content.title}</h3>
-              <p className="mb-4 leading-2">{content.body}</p>
+              {Object.entries(content).map(([key, value]) =>
+                key !== "year" && key !== "id" ? (
+                  <p key={key} className="mb-4 leading-2">
+                    <strong>{key.charAt(0).toUpperCase() + key.slice(1)}:</strong> {value}
+                  </p>
+                ) : null
+              )}
             </div>
           </section>
         ))}
@@ -103,4 +107,3 @@ export function Timeline({ contents }: TimelineProps) {
     </div>
   )
 }
-
