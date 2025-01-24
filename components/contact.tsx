@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useId, useState } from "react";
+import React, { useId } from "react";
 import { Mail, MapPin, Phone } from "lucide-react";
 import { BsGithub, BsLinkedin } from "react-icons/bs";
 import Link from "next/link";
@@ -8,7 +8,6 @@ import ErkamImg from "@/public/developer2.jpg";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
-import { toast } from "react-toastify";
 import { Input } from "./ui/input";
 import { sendEmail } from "@/lib/contactEmail";
 import { useForm } from 'react-hook-form';
@@ -46,8 +45,6 @@ export type FormData = {
 
 export default function Contact() {
     const { register, handleSubmit } = useForm<FormData>();
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState("");
 
 
     function onSubmit(data: FormData) {
@@ -104,10 +101,9 @@ export default function Contact() {
                                     <TextInput label="Full Name" {...register('name', { required: true })} required />
                                     <TextInput label="Email" type="email" {...register('email', { required: true })} required />
                                     <TextInput label="Message" {...register('message', { required: true })} />
-                                    <Button type="submit" disabled={loading} variant={"default"}>
-                                        {loading ? "Sending..." : "Send"}
+                                    <Button type="submit"  variant={"default"}>
+                                        Send
                                     </Button>
-                                    {error && <div className="text-red-500 mt-2">{error}</div>}
                                 </form>
                             </CardContent>
                         </Card>

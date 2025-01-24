@@ -7,7 +7,6 @@ import ScrollTrigger from "gsap/ScrollTrigger"
 interface TimelineContent {
   id?: string | number
   year: string | number
-  [key: string]: any // Support any additional properties
 }
 
 interface TimelineProps {
