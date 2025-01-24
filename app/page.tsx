@@ -21,12 +21,12 @@ export default function DeveloperPage() {
               Full stack developer and a professional basketball player.<br /> 
               Jump Shots & JavaScript
             </p>
-            <div className="flex flex-row mt-8 justify-between gap-8 items-center"> 
+            <div className="mt-8 space-x-4">
               <Button asChild size="lg" className="text-lg">
-                <Link href="#contact">Contact Me</Link>
+              <Link href="#contact">Contact Me</Link>
               </Button>
               <Button asChild size="lg" variant="outline" className="text-lg">
-                <Link href="#services">Learn More</Link>
+              <Link href="#stats">View Stats</Link>
               </Button>
             </div>
           </div>

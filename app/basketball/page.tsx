@@ -2,69 +2,24 @@
 
 import Image from "next/image"
 import Link from "next/link"
-import { ArrowRight, Mail, Trophy } from "lucide-react"
-
+import BasketballImg from "@/public/basketball.jpg"
 import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
-import { Timeline } from "@/components/timeline"
-
-const STATS = {
-  "2023-24": {
-    points: 22.5,
-    rebounds: 6.8,
-    assists: 4.2,
-    steals: 1.8,
-    blocks: 0.9,
-    games: 32,
-  },
-  "2022-23": {
-    points: 20.1,
-    rebounds: 5.9,
-    assists: 3.8,
-    steals: 1.5,
-    blocks: 0.7,
-    games: 35,
-  },
-  "2021-22": {
-    points: 18.4,
-    rebounds: 5.2,
-    assists: 3.5,
-    steals: 1.3,
-    blocks: 0.6,
-    games: 30,
-  },
-}
-
-const TIMELINE_CONTENT = [
-  {
-    year: 2024,
-    title: "League All-Star",
-    body: "Selected for the All-Star team and led team to playoffs",
-  },
-  {
-    year: 2023,
-    title: "Team Captain",
-    body: "Named team captain and achieved career-high scoring average",
-  },
-  {
-    year: 2022,
-    title: "Rising Star",
-    body: "Named to the All-Rookie team and won Rookie of the Month twice",
-  },
-]
+import {Card} from "@/components/ui/card"
+import Contact from "@/components/contact"
+import Experience from "@/components/player/experience"
+import Stats from "@/components/player/stats"
 
 const HIGHLIGHTS = [
   {
-    year: "2023-24",
-    url: "https://youtu.be/88JQbERQpFE?si=8X3195ZrGk0XzZn9",
-  },
-  {
-    year: "2022-23",
+    year: "2023",
     url: "https://youtu.be/Coc_dT-jcOw?si=HUgtTTeQJgoWDH_r",
   },
   {
-    year: "2021-22",
+    year: "2022",
+    url: "https://youtu.be/88JQbERQpFE?si=8X3195ZrGk0XzZn9",
+  },
+  {
+    year: "2021",
     url: "https://youtu.be/UtQiRfMQN88?si=AzMQPrDKJUgiZp6o",
   },
 ]
@@ -74,11 +29,14 @@ export default function BasketballPage() {
     <div className="flex flex-col gap-16 pb-8">
       {/* Hero Section */}
       <section className="min-h-[calc(100vh-4rem)] flex items-center">
-        <div className="container flex flex-col lg:flex-row items-center gap-12 py-16">
-          <div className="flex flex-col items-center lg:items-start text-center lg:text-left lg:w-1/2 xl:w-2/5">
-            <h1 className="font-heading text-4xl sm:text-5xl md:text-6xl xl:text-7xl 2xl:text-8xl">Erkam Kiris</h1>
-            <p className="mt-4 text-muted-foreground sm:text-xl xl:text-2xl max-w-[42rem] xl:max-w-[50rem]">
-              Professional Basketball Player
+        <div className="container flex flex-col lg:flex-row lg:justify-between items-center gap-6 py-8">
+          <div className="flex flex-col items-center lg:items-start text-center lg:text-left  ">
+            <h1 className="font-heading text-4xl sm:text-4xl md:text-5xl xl:text-xl 2xl:text-7xl">
+              Precision on the Court, Perfection in the Code.
+            </h1>
+            <p className="mt-4 text-muted-foreground sm:text-lg xl:text-xl ">
+              Full stack developer and a professional basketball player.<br />
+              Jump Shots & JavaScript
             </p>
             <div className="mt-8 space-x-4">
               <Button asChild size="lg" className="text-lg">
@@ -89,13 +47,13 @@ export default function BasketballPage() {
               </Button>
             </div>
           </div>
-          <div className="lg:w-1/2 xl:w-3/5">
+          <div>
             <Image
-              src="/placeholder.svg"
-              alt="Basketball Hero"
+              src={BasketballImg}
+              alt="Hero"
               width={900}
               height={600}
-              className="rounded-lg object-cover w-full"
+              className="rounded-full max-w-xl object-cover w-full"
               priority
             />
           </div>
@@ -103,70 +61,22 @@ export default function BasketballPage() {
       </section>
 
       {/* Stats Section */}
-      <section id="stats" className="container py-8 md:py-12 lg:py-24">
-        <div className="mx-auto flex max-w-[58rem] flex-col items-center space-y-4 text-center mb-8">
-          <h2 className="font-heading text-3xl leading-[1.1] sm:text-3xl md:text-6xl">Career Statistics</h2>
-          <p className="max-w-[85%] leading-normal text-muted-foreground sm:text-lg sm:leading-7">
-            Season averages and achievements
-          </p>
-        </div>
-        <Card className="max-w-[2000px] mx-auto">
-          <CardHeader>
-            <CardTitle>Season Averages</CardTitle>
-          </CardHeader>
-          <CardContent className="overflow-x-auto">
-            <Table>
-              <TableHeader>
-                <TableRow>
-                  <TableHead>Season</TableHead>
-                  <TableHead>Games</TableHead>
-                  <TableHead>Points</TableHead>
-                  <TableHead>Rebounds</TableHead>
-                  <TableHead>Assists</TableHead>
-                  <TableHead>Steals</TableHead>
-                  <TableHead>Blocks</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                {Object.entries(STATS).map(([season, stats]) => (
-                  <TableRow key={season}>
-                    <TableCell className="font-medium">{season}</TableCell>
-                    <TableCell>{stats.games}</TableCell>
-                    <TableCell>{stats.points}</TableCell>
-                    <TableCell>{stats.rebounds}</TableCell>
-                    <TableCell>{stats.assists}</TableCell>
-                    <TableCell>{stats.steals}</TableCell>
-                    <TableCell>{stats.blocks}</TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </CardContent>
-        </Card>
-      </section>
+      <Stats />
 
       {/* Experience Timeline Section */}
-      <section id="experience" className="container py-8 md:py-12 lg:py-24">
-        <div className="mx-auto flex max-w-[58rem] flex-col items-center space-y-4 text-center mb-8">
-          <h2 className="font-heading text-3xl leading-[1.1] sm:text-3xl md:text-6xl">Career Highlights</h2>
-          <p className="max-w-[85%] leading-normal text-muted-foreground sm:text-lg sm:leading-7">
-            Professional achievements and milestones
-          </p>
-        </div>
-        <Timeline contents={TIMELINE_CONTENT} />
-      </section>
+      <Experience />
 
       {/* Highlights Section */}
       <section id="highlights" className="container py-8 md:py-12 lg:py-24">
-        <div className="mx-auto flex max-w-[58rem] flex-col items-center space-y-4 text-center mb-8">
+        <div className="mx-auto flex flex-col items-center space-y-4 text-center mb-8">
           <h2 className="font-heading text-3xl leading-[1.1] sm:text-3xl md:text-6xl">Season Highlights</h2>
-          <p className="max-w-[85%] leading-normal text-muted-foreground sm:text-lg sm:leading-7">
+          <p className="max-w-[50%] leading-normal text-muted-foreground sm:text-lg sm:leading-7">
             Watch game highlights from recent seasons
           </p>
         </div>
-        <div className="grid gap-8 max-w-[2000px] mx-auto">
+        <div className="flex flex-row w-full gap-8 flex-wrap justify-center">
           {HIGHLIGHTS.map((highlight) => (
-            <Card key={highlight.year} className="p-6">
+            <Card key={highlight.year} className="p-6 max-w-[400px] w-full">
               <h3 className="text-2xl font-semibold mb-4">{highlight.year} Season</h3>
               <div className="relative pb-[56.25%] h-0">
                 <iframe
@@ -182,40 +92,7 @@ export default function BasketballPage() {
         </div>
       </section>
 
-      {/* Contact Section */}
-      <section id="contact" className="container py-8 md:py-12 lg:py-24">
-        <div className="mx-auto flex max-w-[58rem] flex-col items-center space-y-4 text-center mb-8">
-          <h2 className="font-heading text-3xl leading-[1.1] sm:text-3xl md:text-6xl">Contact Me</h2>
-          <p className="max-w-[85%] leading-normal text-muted-foreground sm:text-lg sm:leading-7">
-            Get in touch for business inquiries
-          </p>
-        </div>
-        <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-2">
-          <Card>
-            <CardHeader>
-              <CardTitle>Contact Information</CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <div className="flex items-center space-x-2">
-                <Mail className="h-4 w-4" />
-                <span>sports@example.com</span>
-              </div>
-              <div className="flex items-center space-x-2">
-                <Trophy className="h-4 w-4" />
-                <span>Professional Basketball Player</span>
-              </div>
-            </CardContent>
-          </Card>
-          <Image
-            src="/placeholder.svg"
-            alt="Basketball Contact"
-            width={600}
-            height={400}
-            className="rounded-lg object-cover"
-          />
-        </div>
-      </section>
+      <Contact />
     </div>
   )
 }
-
