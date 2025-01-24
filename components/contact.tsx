@@ -1,29 +1,82 @@
-import { ArrowRight, Mail, MapPin, Phone } from "lucide-react"
-import ErkamImg from "@/public/developer2.jpg"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
-import { Button } from "@/components/ui/button"
-import Image from "next/image"
+"use client";
+
+import React, { useId, useState } from "react";
+import { Mail, MapPin, Phone } from "lucide-react";
+import { BsGithub, BsLinkedin } from "react-icons/bs";
+import Link from "next/link";
+import ErkamImg from "@/public/developer2.jpg";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import Image from "next/image";
+import { toast } from "react-toastify";
+import { Input } from "./ui/input";
+import { sendEmail } from "@/lib/contactEmail";
+import { useForm } from 'react-hook-form';
+
+// Forwarded TextInput Component
+const TextInput = React.forwardRef<HTMLInputElement, React.ComponentPropsWithoutRef<'input'> & { label: string, onChange: (e: React.ChangeEvent<HTMLInputElement>) => void }>(({
+    label,
+    onChange,
+    ...props
+}, ref) => {
+    const id = useId();
+    return (
+        <div className="group relative z-0 transition-all focus-within:z-10">
+            <Input
+                type="text"
+                id={id}
+                ref={ref}
+                onChange={onChange}
+                placeholder={label}
+                {...props}
+            />
+        </div>
+    );
+});
+TextInput.displayName = "TextInput";
+
+
+export type FormData = {
+    name: string;
+    email: string;
+    message: string;
+};
+
+
 
 export default function Contact() {
+    const { register, handleSubmit } = useForm<FormData>();
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState("");
+
+
+    function onSubmit(data: FormData) {
+        sendEmail(data);
+    }
+
+
     return (
         <section id="contact" className="container py-8 md:py-12 lg:py-24">
-            <div className="mx-auto flex  flex-col items-center space-y-4 text-center mb-8">
+            <div className="mx-auto flex flex-col items-center space-y-4 text-center mb-8">
                 <div className="flex flex-col items-center space-y-4 text-center mb-8">
                     <h2 className="font-heading text-3xl leading-[1.1] sm:text-3xl md:text-6xl">Contact Me</h2>
-                    <p className="max-w-[85%] leading-normal text-muted-foreground sm:text-lg sm:leading-7 ">
-                        Get in touch to discuss your project
+                    <p className="max-w-[85%] leading-normal text-muted-foreground sm:text-lg sm:leading-7">
+                        Get in touch with me for any inquiries or collaborations
                     </p>
                 </div>
-                <div className="flex flex-row  justify-between gap-x-24 ">
-                    <Image
-                        alt="Erkam Kiris"
-                        src={ErkamImg}
-                        className="rounded-full object-contain max-w-xl " />
-                    <div className="space-y-4 mt-4 flex flex-col gap-2 ">
+                <div className="flex flex-row justify-between gap-x-24">
+                    <Image alt="Erkam Kiris" src={ErkamImg} className="rounded-full object-contain max-w-md" />
+                    <div className="space-y-4 mt-4 flex flex-col gap-2">
                         <Card>
                             <CardHeader>
+                                <div className="flex flex-row justify-center gap-4 w-full items-center py-2">
+                                    <Link href="https://github.com/erkamkrs" aria-label="GitHub" className="text-foreground/60 hover:text-foreground">
+                                        <BsGithub className="h-6 w-6" />
+                                    </Link>
+                                    <Link href="https://www.linkedin.com/in/erkamkiris/" aria-label="LinkedIn" className="text-foreground/60 hover:text-foreground">
+                                        <BsLinkedin className="h-6 w-6" />
+                                    </Link>
+                                </div>
                                 <CardTitle>Contact Information</CardTitle>
                                 <CardDescription>Reach out through any of these channels</CardDescription>
                             </CardHeader>
@@ -45,25 +98,16 @@ export default function Contact() {
                         <Card>
                             <CardHeader>
                                 <CardTitle>Send a Message</CardTitle>
-                                <CardDescription>Fill out the form below</CardDescription>
                             </CardHeader>
                             <CardContent>
-                                <form className="space-y-2">
-                                    <div className="flex flex-col space-y-2">
-                                        <label htmlFor="name" className="text-left">Name</label>
-                                        <Input id="name" placeholder="Your name" />
-                                    </div>
-                                    <div className="flex flex-col space-y-2">
-                                        <label htmlFor="email" className="text-left">Email</label>
-                                        <Input id="email" type="email" placeholder="Your email" />
-                                    </div>
-                                    <div className="flex flex-col space-y-2">
-                                        <label htmlFor="message" className="text-left">Message</label>
-                                        <Textarea id="message" placeholder="Your message" />
-                                    </div>
-                                    <Button type="submit" className="w-full">
-                                        Send Message
+                                <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-y-6 w-full">
+                                    <TextInput label="Full Name" {...register('name', { required: true })} required />
+                                    <TextInput label="Email" type="email" {...register('email', { required: true })} required />
+                                    <TextInput label="Message" {...register('message', { required: true })} />
+                                    <Button type="submit" disabled={loading} variant={"default"}>
+                                        {loading ? "Sending..." : "Send"}
                                     </Button>
+                                    {error && <div className="text-red-500 mt-2">{error}</div>}
                                 </form>
                             </CardContent>
                         </Card>
@@ -71,5 +115,5 @@ export default function Contact() {
                 </div>
             </div>
         </section>
-    )
+    );
 }
