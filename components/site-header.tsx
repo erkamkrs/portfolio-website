@@ -2,11 +2,11 @@
 
 import Link from "next/link"
 import { usePathname, useRouter } from "next/navigation"
-import { Layers } from "lucide-react"
 import { BsGithub, BsLinkedin } from "react-icons/bs"
 import { cn } from "@/lib/utils"
 import { ThemeToggle } from "@/components/theme-toggle"
 import { Button } from "@/components/ui/button"
+import { BiBasketball } from "react-icons/bi"
 
 export function SiteHeader() {
   const pathname = usePathname()
@@ -34,7 +34,7 @@ export function SiteHeader() {
       <div className="container flex h-16 items-center">
         <div className="mr-4 hidden md:flex">
           <Link href={isBasketball ? "/basketball" : "/"} className="mr-6 flex items-center space-x-2">
-            <Layers className="h-6 w-6" />
+            <BiBasketball className="h-6 w-6" />
             <span className="font-bold text-lg">Erkam Kiris</span>
           </Link>
           <nav className="flex items-center space-x-6 text-sm font-medium">
@@ -63,7 +63,6 @@ export function SiteHeader() {
             <Link href="https://www.linkedin.com/in/erkamkiris/" className="text-foreground/60 hover:text-foreground">
               <BsLinkedin className="h-6 w-6" />
             </Link>
-
           </div>
           <ThemeToggle />
         </div>
