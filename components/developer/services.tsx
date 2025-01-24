@@ -26,7 +26,7 @@ export default function Services() {
                 <div className="mx-auto flex max-w-[58rem] flex-col items-center space-y-4 text-center">
                     <h2 className="font-heading text-3xl leading-[1.1] sm:text-3xl md:text-6xl">Services</h2>
                     <p className="max-w-[85%] leading-normal text-muted-foreground sm:text-lg sm:leading-7">
-                        Comprehensive software development and consulting services
+                        Comprehensive software development services
                     </p>
                 </div>
                 <div className="mx-auto grid justify-center gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 max-w-[2000px]">
