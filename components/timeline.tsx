@@ -22,7 +22,7 @@ export function Timeline({ contents }: TimelineProps) {
   useEffect(() => {
     const sections = sectionsRef.current.filter(Boolean)
 
-    sections.forEach((section, index) => {
+    sections.forEach((section) => {
       const yearElement = section.querySelector(".year")
       const contentElement = section.querySelector(".content")
 
@@ -79,12 +79,16 @@ export function Timeline({ contents }: TimelineProps) {
       <div className="flex flex-col space-y-20">
         {contents.map((content: TimelineContent, index: number) => (
           <section
-            ref={(el: HTMLDivElement) => (sectionsRef.current[index] = el)}
-            key={content.id || index}
-            className={`flex w-full min-h-[20vh] snap-center relative ${
-              index % 2 === 0 ? "lg:justify-end" : "lg:justify-start"
-            }`}
-          >
+          ref={(el: HTMLDivElement | null) => {
+            if (el) {
+              sectionsRef.current[index] = el;
+            }
+          }}
+          key={content.id || index}
+          className={`flex w-full min-h-[20vh] snap-center relative ${
+            index % 2 === 0 ? "lg:justify-end" : "lg:justify-start"
+          }`}
+        >
             <div className="year ml-8 lg:ml-0 text-5xl lg:text-6xl py-2 absolute lg:left-1/2 top-[30%] transform -translate-x-1/2 -translate-y-1/2 z-20 bg-background">
               {content.year}
             </div>
