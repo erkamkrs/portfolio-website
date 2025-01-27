@@ -32,12 +32,14 @@ export function SiteHeader() {
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-16 items-center">
-        <div className="mr-4 hidden md:flex">
-          <Link href={isBasketball ? "/basketball" : "/"} className="mr-6 flex items-center space-x-2">
-            <BiBasketball className="h-6 w-6" />
-            <span className="font-bold text-lg">Erkam Kiris</span>
-          </Link>
-          <nav className="flex items-center space-x-6 text-sm font-medium">
+        <div className=" flex items-center space-x-4">
+          <Button size={"sm"} className="p-1">
+            <Link href={isBasketball ? "/basketball" : "/"} className="mr-6 flex items-center space-x-2">
+              <BiBasketball className="h-6 w-6" />
+              <span className="font-bold text-sm lg:text-lg">Erkam Kiris</span>
+            </Link>
+          </Button>
+          <nav className="flex hidden md:flex items-center space-x-6 text-sm font-medium">
             {navItems.map((item) => (
               <Link
                 key={item.href}
@@ -53,7 +55,7 @@ export function SiteHeader() {
           </nav>
         </div>
         <div className="flex flex-1 items-center justify-between space-x-2 md:justify-end">
-        <div className="flex flex-row justify-between gap-4 w-full items-center">
+          <div className="flex flex-row justify-between gap-4 w-full items-center">
             <Button onClick={() => router.push(isBasketball ? "/" : "/basketball")} className="ml-auto">
               {isBasketball ? "Developer" : "Basketball"}
             </Button>
