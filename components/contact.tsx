@@ -61,8 +61,8 @@ export default function Contact() {
                         Get in touch with me for any inquiries or collaborations
                     </p>
                 </div>
-                <div className="flex flex-row justify-between gap-x-24">
-                    <Image alt="Erkam Kiris" src={ErkamImg} className="rounded-full object-contain max-w-md" />
+                <div className="flex lg:flex-row  flex-col lg:justify-between gap-x-24">
+                    <Image alt="Erkam Kiris" src={ErkamImg} className="rounded-full object-contain lg:max-w-md" />
                     <div className="space-y-4 mt-4 flex flex-col gap-2">
                         <Card>
                             <CardHeader>
