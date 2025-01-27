@@ -28,8 +28,8 @@ export default function BasketballPage() {
   return (
     <div className="flex flex-col gap-16 pb-8">
       {/* Hero Section */}
-      <section className="min-h-[calc(100vh-4rem)] flex items-center">
-        <div className="container flex flex-col lg:flex-row lg:justify-between items-center gap-6 py-8">
+      <section className="min-h-[calc(100vh-4rem)] hidden lg:flex items-center">
+        <div className="container flex flex-col lg:flex-row lg:justify-between items-center gap-6 py-8 ">
           <div className="flex flex-col items-center lg:items-start text-center lg:text-left  ">
             <h1 className="font-heading text-4xl sm:text-4xl md:text-5xl xl:text-xl 2xl:text-7xl">
               Precision on the Court, Perfection in the Code.
@@ -47,16 +47,50 @@ export default function BasketballPage() {
               </Button>
             </div>
           </div>
-          <div>
+          <div className="lg:w-1/3  h-1/4">
             <Image
               src={BasketballImg}
               alt="Hero"
               width={900}
               height={600}
-              className="rounded-full max-w-xl object-cover w-full"
+              className="rounded-full object-cover"
               priority
             />
           </div>
+        </div>
+      </section>
+
+       {/* Hero Mobile Section */}
+       <section className="my-4 flex items-center lg:hidden">
+        <div className="container flex flex-col items-center gap-2 w-3/4 mx-auto">
+        <div className="w-full">
+            <Image
+              src={BasketballImg}
+              alt="Hero"
+              width={900}
+              height={600}
+              className="rounded-full object-cover "
+              priority
+            />
+          </div>
+          <div className="flex flex-col items-center text-center">
+            <h1 className="font-heading text-3xl sm:text-3xl md:text-4xl">
+            Precision on the Court, Perfection in the Code.
+            </h1>
+            <p className="mt-4 text-muted-foreground sm:text-lg">
+              Full stack developer and a professional basketball player.<br /> 
+              Jump Shots & JavaScript
+            </p>
+            <div className="flex flex-row mt-8 space-x-4">
+              <Button asChild size="sm" className="text-lg">
+              <Link href="#highlights">Watch Highlights</Link>
+              </Button>
+              <Button asChild size="sm" variant="ghost" className="text-lg">
+              <Link href="#stats">View Stats</Link>
+              </Button>
+            </div>
+          </div>
+          
         </div>
       </section>
 
@@ -76,7 +110,7 @@ export default function BasketballPage() {
         </div>
         <div className="flex flex-row w-full gap-8 flex-wrap justify-center">
           {HIGHLIGHTS.map((highlight) => (
-            <Card key={highlight.year} className="p-6 max-w-[400px] w-full">
+            <Card key={highlight.year} className="p-6 max-w-[320px] w-full">
               <h3 className="text-2xl font-semibold mb-4">{highlight.year} Season</h3>
               <div className="relative pb-[56.25%] h-0">
                 <iframe
