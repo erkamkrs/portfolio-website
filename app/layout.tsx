@@ -1,6 +1,6 @@
 import "./globals.css"
 import { Inter } from "next/font/google"
-
+import { Toaster } from "@/components/ui/toaster"
 import { cn } from "@/lib/utils"
 import { ThemeProvider } from "@/components/theme-provider"
 import { SiteHeader } from "@/components/site-header"
@@ -20,6 +20,7 @@ export default function RootLayout({
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <div className="relative flex min-h-screen w-full flex-col">
             <SiteHeader />
+            <Toaster />
             <main className="flex-1 mx-12">{children}</main>
             <SiteFooter />
           </div>

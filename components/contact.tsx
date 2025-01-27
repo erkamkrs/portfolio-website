@@ -11,6 +11,8 @@ import Image from "next/image";
 import { Input } from "./ui/input";
 import { sendEmail } from "@/lib/contactEmail";
 import { useForm } from 'react-hook-form';
+import { useToast } from "@/hooks/use-toast"
+
 
 // Forwarded TextInput Component
 const TextInput = React.forwardRef<HTMLInputElement, React.ComponentPropsWithoutRef<'input'> & { label: string, onChange: (e: React.ChangeEvent<HTMLInputElement>) => void }>(({
@@ -50,6 +52,8 @@ export default function Contact() {
     function onSubmit(data: FormData) {
         sendEmail(data);
     }
+
+    const { toast } = useToast()
 
 
     return (
@@ -101,7 +105,14 @@ export default function Contact() {
                                     <TextInput label="Full Name" {...register('name', { required: true })} required />
                                     <TextInput label="Email" type="email" {...register('email', { required: true })} required />
                                     <TextInput label="Message" {...register('message', { required: true })} />
-                                    <Button type="submit"  variant={"default"}>
+                                    <Button type="submit" variant={"default"}
+                                        onClick={
+                                            () => toast({
+                                                title: "Message Sent",
+                                                description: "Your message has been sent successfully",
+                                                duration: 3000,
+                                            })
+                                        }>
                                         Send
                                     </Button>
                                 </form>
