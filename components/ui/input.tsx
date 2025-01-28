@@ -35,5 +35,6 @@ const FileInput = React.forwardRef<HTMLInputElement, React.ComponentProps<"input
     )
   }
 )
+FileInput.displayName = "FileInput"
 
 export { Input, FileInput }
