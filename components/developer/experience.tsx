@@ -3,18 +3,18 @@ import { Timeline } from "@/components/timeline"
 const TIMELINE_CONTENT = [
   {
     year: 2020,
-    title: "Bachelors of Science",
-    body: "Davis & Elkins College",
+    Degree: "Bachelors of Science",
+    School: "Davis & Elkins College",
   },
   {
     year: 2021,
-    title: "Perfist",
-    body: "Junior Software Developer",
+    Company: "Perfist",
+    Title: "Junior Software Developer",
   },
   {
     year: 2023,
-    title: "Trendico Group",
-    body: "Fullstack Developer",
+    Company: "Trendico Group",
+    Title: "Fullstack Developer",
   },
 ]
 

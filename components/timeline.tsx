@@ -98,7 +98,7 @@ export function Timeline({ contents }: TimelineProps) {
             >
               {Object.entries(content).map(([key, value]) =>
                 key !== "year" && key !== "id" ? (
-                  <p key={key} className="mb-4 leading-2">
+                  <p key={key} className="mb-4 leading-2 text-lg lg:text-xl">
                     <strong>{key.charAt(0).toUpperCase() + key.slice(1)}:</strong> {value}
                   </p>
                 ) : null
