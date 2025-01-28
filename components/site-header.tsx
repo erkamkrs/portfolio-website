@@ -33,10 +33,10 @@ export function SiteHeader() {
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-16 items-center">
         <div className=" flex items-center space-x-4">
-            <Link href={isBasketball ? "/basketball" : "/"} className=" flex items-center space-x-2">
-              <BiBasketball className="h-6 w-6" />
-              <p className="font-bold text-lg">Erkam</p>
-              <p className="font-bold text-lg">Kiris</p>            </Link>
+          <Link href={isBasketball ? "/basketball" : "/"} className=" flex items-center space-x-2">
+            <BiBasketball className="h-6 w-6" />
+            <p className="font-bold text-lg">Erkam</p>
+            <p className="font-bold text-lg">Kiris</p>            </Link>
           <nav className="flex hidden md:flex items-center space-x-6 text-sm font-medium">
             {navItems.map((item) => (
               <Link
@@ -54,17 +54,17 @@ export function SiteHeader() {
         </div>
         <div className="flex flex-1 items-center justify-between space-x-2 md:justify-end">
           <div className="flex flex-row justify-between gap-4 w-full items-center">
-            <Button variant={"secondary"} onClick={() => router.push(isBasketball ? "/" : "/basketball")} className="ml-auto">
+            <Button size={"sm"} onClick={() => router.push(isBasketball ? "/" : "/basketball")} className="ml-auto">
               {isBasketball ? "Developer" : "Basketball"}
             </Button>
-            <Link href="https://github.com/erkamkrs" className="text-foreground/60 hover:text-foreground">
-              <BsGithub className="h-6 w-6" />
-            </Link>
-            <Link href="https://www.linkedin.com/in/erkamkiris/" className="text-foreground/60 hover:text-foreground">
-              <BsLinkedin className="h-6 w-6" />
-            </Link>
+              <Link href="https://github.com/erkamkrs" className="text-foreground/60 hover:text-foreground">
+                <BsGithub className="h-6 w-6" />
+              </Link>
+              <Link href="https://www.linkedin.com/in/erkamkiris/" className="text-foreground/60 hover:text-foreground">
+                <BsLinkedin className="h-6 w-6" />
+              </Link>
+            <ThemeToggle />
           </div>
-          <ThemeToggle />
         </div>
       </div>
     </header>
