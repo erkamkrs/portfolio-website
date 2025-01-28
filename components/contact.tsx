@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useId } from "react";
-import { Car, Mail, MapPin, Phone } from "lucide-react";
+import { Mail, MapPin, Phone } from "lucide-react";
 import { BsGithub, BsLinkedin } from "react-icons/bs";
 import Link from "next/link";
 import ErkamImg from "@/public/developer2.jpg";
