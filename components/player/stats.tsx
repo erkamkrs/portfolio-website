@@ -40,11 +40,11 @@ const STATS: { [key: string]: Stats } = {
     },
     "2024-25": {
         points: 14.8,
-        rebounds: 7.7,
-        assists: 0,
-        blocks: 0,
-        steals: 0,
-        additional: "35% 3PT",
+        rebounds: 7.9,
+        assists: 2.1,
+        blocks: 0.3,
+        steals: 1.0,
+        additional: "40% 3PT",
         link: "https://baloncestoenvivo.feb.es/jugador/950826/2439563",
     },
 }
