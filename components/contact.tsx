@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useId } from "react";
-import { Mail, MapPin, Phone } from "lucide-react";
+import { Car, Mail, MapPin, Phone } from "lucide-react";
 import { BsGithub, BsLinkedin } from "react-icons/bs";
 import Link from "next/link";
 import ErkamImg from "@/public/developer2.jpg";
@@ -10,7 +10,7 @@ import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { Input } from "./ui/input";
 import { sendEmail } from "@/lib/contactEmail";
-import { Form, useForm } from 'react-hook-form';
+import {  useForm } from 'react-hook-form';
 import { useToast } from "@/hooks/use-toast"
 
 // Forwarded TextInput Component
@@ -55,9 +55,10 @@ export default function Contact() {
             });
             reset(); // Clear the form values
         } catch (error) {
+           console.error(error);
             toast({
                 title: "Error",
-                description: "There was an error sending your message. Please try again.",
+                description: "An error occurred while sending the message",
                 duration: 3000,
             });
         }
