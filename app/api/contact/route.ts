@@ -3,8 +3,9 @@ import nodemailer from 'nodemailer';
 import Mail from 'nodemailer/lib/mailer';
 import { toast } from "react-toastify";
 
+
 export async function POST(request: NextRequest) {
-  const { email, name, message } = await request.json();
+  const { email, name, message, attachment } = await request.json();
 
   const transport = nodemailer.createTransport({
     service: 'gmail',
@@ -13,6 +14,7 @@ export async function POST(request: NextRequest) {
       pass: process.env.MY_PASSWORD,
     },
   });
+
 
   const mailOptions: Mail.Options = {
     from: process.env.MY_EMAIL,
@@ -27,6 +29,7 @@ export async function POST(request: NextRequest) {
     <br/>
     <p>Sent from:
       ${email}</p>`,
+      attachments: attachment ? [{ filename: attachment[0].name, content: attachment[0].data }] : [],
   };
 
   const sendMailPromise = () =>
