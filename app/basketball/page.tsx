@@ -1,5 +1,4 @@
 "use client"
-import { Card } from "@/components/ui/card"
 import Contact from "@/components/contact"
 import Experience from "@/components/player/experience"
 import Stats from "@/components/player/stats"
