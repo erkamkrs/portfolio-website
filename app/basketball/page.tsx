@@ -4,7 +4,7 @@ import Image from "next/image"
 import Link from "next/link"
 import BasketballImg from "@/public/basketball.jpg"
 import { Button } from "@/components/ui/button"
-import {Card} from "@/components/ui/card"
+import { Card } from "@/components/ui/card"
 import Contact from "@/components/contact"
 import Experience from "@/components/player/experience"
 import Stats from "@/components/player/stats"
@@ -60,10 +60,10 @@ export default function BasketballPage() {
         </div>
       </section>
 
-       {/* Hero Mobile Section */}
-       <section className="my-4 flex items-center lg:hidden">
+      {/* Hero Mobile Section */}
+      <section className="my-4 flex items-center lg:hidden">
         <div className="container flex flex-col items-center gap-2 w-3/4 mx-auto">
-        <div className="w-full">
+          <div className="w-full py-4">
             <Image
               src={BasketballImg}
               alt="Hero"
@@ -75,30 +75,32 @@ export default function BasketballPage() {
           </div>
           <div className="flex flex-col items-center text-center">
             <h1 className="font-heading text-3xl sm:text-3xl md:text-4xl">
-            Precision on the Court, Perfection in the Code.
+              Precision on the Court, Perfection in the Code.
             </h1>
             <p className="mt-4 text-muted-foreground sm:text-lg">
-              Full stack developer and a professional basketball player.<br /> 
+              Full stack developer and a professional basketball player.<br />
               Jump Shots & JavaScript
             </p>
             <div className="flex flex-row mt-8 space-x-4">
               <Button asChild size="sm" className="text-lg">
-              <Link href="#highlights">Watch Highlights</Link>
+                <Link href="#highlights">Watch Highlights</Link>
               </Button>
               <Button asChild size="sm" variant="ghost" className="text-lg">
-              <Link href="#stats">View Stats</Link>
+                <Link href="#stats">View Stats</Link>
               </Button>
             </div>
           </div>
-          
+
         </div>
       </section>
+
+      {/* Experience Timeline Section */}
+      <Experience />
 
       {/* Stats Section */}
       <Stats />
 
-      {/* Experience Timeline Section */}
-      <Experience />
+
 
       {/* Highlights Section */}
       <section id="highlights" className="container py-8 md:py-12 lg:py-24">

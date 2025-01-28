@@ -46,7 +46,7 @@ export default function DeveloperPage() {
       {/* Hero Mobile Section */}
       <section className="my-4 flex items-center lg:hidden">
         <div className="container flex flex-col items-center gap-2 ">
-        <div className="w-full">
+        <div className="w-full py-4">
             <Image
               src={DeveloperImg}
               alt="Hero"
@@ -77,11 +77,12 @@ export default function DeveloperPage() {
         </div>
       </section>
 
-      {/* Services Section */}
-      <Services />
 
       {/* Experience Section */}
       <Experience />
+
+      {/* Services Section */}
+      <Services />
 
       {/* Technologies Section */}
       <Technologies />

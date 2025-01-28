@@ -73,7 +73,7 @@ export function Timeline({ contents }: TimelineProps) {
   }, [])
 
   return (
-    <div ref={pageRef} className="relative lg:pt-24 my-12 max-w-[2000px] mx-auto">
+    <div ref={pageRef} className="relative lg:pt-24 my-12 mx-4 max-w-[2000px] mx-auto">
       <div className="ml-8 lg:ml-0 timeline-line absolute top-0 bottom-0 w-[2px] bg-primary/20 z-10 lg:left-1/2 transform -translate-x-1/2"></div>
       <div className="flex flex-col space-y-20">
         {contents.map((content: TimelineContent, index: number) => (
@@ -88,7 +88,7 @@ export function Timeline({ contents }: TimelineProps) {
             index % 2 === 0 ? "lg:justify-end" : "lg:justify-start"
           }`}
         >
-            <div className="year ml-8 lg:ml-0 text-5xl lg:text-6xl py-2 absolute lg:left-1/2 top-[30%] transform -translate-x-1/2 -translate-y-1/2 z-20 bg-background">
+            <div className="year ml-8 lg:ml-0 text-4xl lg:text-6xl py-2 absolute lg:left-1/2 top-[30%] transform -translate-x-1/2 -translate-y-1/2 z-20 bg-background">
               {content.year}
             </div>
             <div
