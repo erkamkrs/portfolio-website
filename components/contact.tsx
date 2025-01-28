@@ -10,9 +10,8 @@ import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { Input } from "./ui/input";
 import { sendEmail } from "@/lib/contactEmail";
-import { useForm } from 'react-hook-form';
+import { Form, useForm } from 'react-hook-form';
 import { useToast } from "@/hooks/use-toast"
-
 
 // Forwarded TextInput Component
 const TextInput = React.forwardRef<HTMLInputElement, React.ComponentPropsWithoutRef<'input'> & { label: string, onChange: (e: React.ChangeEvent<HTMLInputElement>) => void }>(({
@@ -36,24 +35,33 @@ const TextInput = React.forwardRef<HTMLInputElement, React.ComponentPropsWithout
 });
 TextInput.displayName = "TextInput";
 
-
 export type FormData = {
     name: string;
     email: string;
     message: string;
 };
 
-
-
 export default function Contact() {
-    const { register, handleSubmit } = useForm<FormData>();
+    const { register, handleSubmit, reset } = useForm<FormData>();
+    const { toast } = useToast();
 
-
-    function onSubmit(data: FormData) {
-        sendEmail(data);
+    async function onSubmit(data: FormData) {
+        try {
+            await sendEmail(data);
+            toast({
+                title: "Message Sent",
+                description: "Your message has been sent successfully",
+                duration: 3000,
+            });
+            reset(); // Clear the form values
+        } catch (error) {
+            toast({
+                title: "Error",
+                description: "There was an error sending your message. Please try again.",
+                duration: 3000,
+            });
+        }
     }
-
-    const { toast } = useToast()
 
 
     return (
@@ -82,45 +90,38 @@ export default function Contact() {
                                 <CardDescription>Reach out through any of these channels</CardDescription>
                             </CardHeader>
                             <CardContent className="space-y-2">
-                                <div className="flex items-center space-x-2">
-                                    <Mail className="h-4 w-4" />
-                                    <span>erkamkiris@gmail.com</span>
-                                </div>
-                                <div className="flex items-center space-x-2">
-                                    <Phone className="h-4 w-4" />
-                                    <span>+34 641 963 864</span>
-                                </div>
-                                <div className="flex items-center space-x-2">
-                                    <MapPin className="h-4 w-4" />
-                                    <span>Zaragoza, Spain</span>
-                                </div>
-                            </CardContent>
-                        </Card>
-                        <Card>
-                            <CardHeader>
-                                <CardTitle>Send a Message</CardTitle>
-                            </CardHeader>
-                            <CardContent>
-                                <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-y-6 w-full">
-                                    <TextInput label="Full Name" {...register('name', { required: true })} required />
-                                    <TextInput label="Email" type="email" {...register('email', { required: true })} required />
-                                    <TextInput label="Message" {...register('message', { required: true })} />
-                                    <Button type="submit" variant={"default"}
-                                        onClick={
-                                            () => toast({
-                                                title: "Message Sent",
-                                                description: "Your message has been sent successfully",
-                                                duration: 3000,
-                                            })
-                                        }>
-                                        Send
-                                    </Button>
-                                </form>
-                            </CardContent>
-                        </Card>
-                    </div>
+                            <div className="flex items-center space-x-2">
+                                <Mail className="h-4 w-4" />
+                                <span>erkamkiris@gmail.com</span>
+                            </div>
+                            <div className="flex items-center space-x-2">
+                                <Phone className="h-4 w-4" />
+                                <span>+34 641 963 864</span>
+                            </div>
+                            <div className="flex items-center space-x-2">
+                                <MapPin className="h-4 w-4" />
+                                <span>Zaragoza, Spain</span>
+                            </div>
+                        </CardContent>
+                    </Card>
+                    <Card>
+                        <CardHeader>
+                            <CardTitle>Send a Message</CardTitle>
+                        </CardHeader>
+                        <CardContent>
+                            <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-y-6 w-full">
+                                <TextInput label="Full Name" {...register('name', { required: true })} required />
+                                <TextInput label="Email" type="email" {...register('email', { required: true })} required />
+                                <TextInput label="Message" {...register('message', { required: true })} />
+                                <Button type="submit" variant={"default"}>
+                                    Send
+                                </Button>
+                            </form>
+                        </CardContent>
+                    </Card>
                 </div>
             </div>
-        </section>
+        </div>
+        </section >
     );
 }
