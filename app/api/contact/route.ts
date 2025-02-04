@@ -1,52 +1,49 @@
-import { type NextRequest, NextResponse } from 'next/server';
-import nodemailer from 'nodemailer';
-import Mail from 'nodemailer/lib/mailer';
-import { toast } from "react-toastify";
-
+import { type NextRequest, NextResponse } from "next/server";
+import nodemailer from "nodemailer";
+import Mail from "nodemailer/lib/mailer";
 
 export async function POST(request: NextRequest) {
-  const { email, name, message, attachment } = await request.json();
+  const formData = await request.formData();
+
+  const email = formData.get("email") as string;
+  const name = formData.get("name") as string;
+  const message = formData.get("message") as string;
+  const attachmentFile = formData.get("attachment") as File | null;
 
   const transport = nodemailer.createTransport({
-    service: 'gmail',
+    service: "gmail",
     auth: {
       user: process.env.MY_EMAIL,
       pass: process.env.MY_PASSWORD,
     },
   });
 
+  // Process the attachment correctly
+  let attachments: Mail.Attachment[] = [];
+  if (attachmentFile) {
+    const buffer = Buffer.from(await attachmentFile.arrayBuffer()); // Convert File to Buffer
+    attachments.push({
+      filename: attachmentFile.name,
+      content: buffer,
+    });
+  }
 
   const mailOptions: Mail.Options = {
     from: process.env.MY_EMAIL,
     to: process.env.MY_EMAIL,
     subject: `Message from ${name} (${email})`,
     html: `
-    <div><strong>Name:</strong> ${name}</div>
-    <br/>
-    <div><strong>Email:</strong> ${email}</div>
-    <br/>
-    <div><strong>Message:</strong> ${message}</div>
-    <br/>
-    <p>Sent from:
-      ${email}</p>`,
-      attachments: attachment ? [{ filename: attachment[0].name, content: attachment[0].data }] : [],
+      <div><strong>Name:</strong> ${name}</div>
+      <div><strong>Email:</strong> ${email}</div>
+      <div><strong>Message:</strong> ${message}</div>
+    `,
+    attachments, // Add processed attachment
   };
 
-  const sendMailPromise = () =>
-    new Promise<string>((resolve, reject) => {
-      transport.sendMail(mailOptions, function (err) {
-        if (!err) {
-          resolve('Email sent');
-        } else {
-          reject(err.message);
-        }
-      });
-    });
-
   try {
-    await sendMailPromise();
-    return NextResponse.json({ toast: toast.success('Email sent') });
+    await transport.sendMail(mailOptions);
+    return NextResponse.json({ message: "Email sent successfully" });
   } catch (err) {
-    return NextResponse.json({ error: err }, { status: 500 });
+    return NextResponse.json({ error: err.message }, { status: 500 });
   }
 }
