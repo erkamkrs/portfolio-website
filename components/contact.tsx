@@ -48,7 +48,10 @@ export default function Contact() {
 
     async function onSubmit(data: FormData) {
         try {
-            await sendEmail(data);
+            await sendEmail({
+                ...data,
+                attachment: Array.from(data.attachment)
+            });
             toast({
                 title: "Message Sent",
                 description: "Your message has been sent successfully",

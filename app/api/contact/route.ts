@@ -19,7 +19,7 @@ export async function POST(request: NextRequest) {
   });
 
   // Process the attachment correctly
-  let attachments: Mail.Attachment[] = [];
+  const attachments: Mail.Attachment[] = [];
   if (attachmentFile) {
     const buffer = Buffer.from(await attachmentFile.arrayBuffer()); // Convert File to Buffer
     attachments.push({
@@ -44,6 +44,7 @@ export async function POST(request: NextRequest) {
     await transport.sendMail(mailOptions);
     return NextResponse.json({ message: "Email sent successfully" });
   } catch (err) {
-    return NextResponse.json({ error: err.message }, { status: 500 });
+    const errorMessage = err instanceof Error ? err.message : "Unknown error";
+    return NextResponse.json({ error: errorMessage }, { status: 500 });
   }
 }
