@@ -1,7 +1,7 @@
 "use client"
 import React, { useId } from "react";
-import { Mail, MapPin, Phone } from "lucide-react";
-import { BsGithub, BsLinkedin } from "react-icons/bs";
+import { Mail, Phone, SaveIcon } from "lucide-react";
+import { BsGithub, BsLinkedin, BsDownload } from "react-icons/bs";
 import Link from "next/link";
 import ErkamImg from "@/public/developer2.jpg";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -12,6 +12,7 @@ import { sendEmail } from "@/lib/contactEmail";
 import { useForm } from 'react-hook-form';
 import { useToast } from "@/hooks/use-toast"
 import { FadeIn } from "./ui/fadeIn";
+import { Download } from "lucide-react";
 
 // Forwarded TextInput Component
 const TextInput = React.forwardRef<HTMLInputElement, React.ComponentPropsWithoutRef<'input'> & { label: string, onChange: (e: React.ChangeEvent<HTMLInputElement>) => void }>(({
@@ -79,37 +80,34 @@ export default function Contact() {
                             Get in touch with me for any inquiries or collaborations
                         </p>
                     </div>
-                    <div className="flex lg:flex-row  flex-col lg:justify-between gap-x-24">
+                    <div className="flex lg:flex-row flex-col lg:justify-between gap-x-24">
                         <Image alt="Erkam Kiris" src={ErkamImg} className="rounded-full object-contain lg:max-w-md" />
-                        <div className="space-y-4 mt-4 flex flex-col gap-2">
-                            <Card>
-                                <CardHeader>
-                                    <div className="flex flex-row justify-center gap-4 w-full items-center py-2">
-                                        <Link href="https://github.com/erkamkrs" aria-label="GitHub" className="text-foreground/60 hover:text-foreground">
-                                            <BsGithub className="h-6 w-6" />
-                                        </Link>
-                                        <Link href="https://www.linkedin.com/in/erkamkiris/" aria-label="LinkedIn" className="text-foreground/60 hover:text-foreground">
-                                            <BsLinkedin className="h-6 w-6" />
-                                        </Link>
-                                    </div>
-                                    <CardTitle>Contact Information</CardTitle>
-                                    <CardDescription>Reach out through any of these channels</CardDescription>
-                                </CardHeader>
-                                <CardContent className="space-y-2">
-                                    <div className="flex items-center space-x-2">
-                                        <Mail className="h-4 w-4" />
-                                        <span>erkamkiris@gmail.com</span>
-                                    </div>
-                                    <div className="flex items-center space-x-2">
-                                        <Phone className="h-4 w-4" />
-                                        <span>+34 641 963 864</span>
-                                    </div>
-                                    <div className="flex items-center space-x-2">
-                                        <MapPin className="h-4 w-4" />
-                                        <span>Zaragoza, Spain</span>
-                                    </div>
-                                </CardContent>
-                            </Card>
+                        <div className="space-y-4 flex flex-col">
+                            <CardContent className="flex flex-row gap-2 items-center justify-between ">
+                                <Link className="text-foreground/60 hover:text-foreground" href="mailto:erkamkiris@gmail.com">
+                                    <Card className="flex flex-col items-center space-x-2 p-4 mx-auto hover:shadow-lg transition-transform hover:scale-105 bg-gray-900">
+                                        <Mail className="h-8 w-8 m-2" />
+                                    </Card>
+                                </Link>
+                                <Link href="https://github.com/erkamkrs" aria-label="GitHub" className="text-foreground/60 hover:text-foreground">
+                                    <Card className="flex flex-col items-center space-x-2 p-4 mx-auto hover:shadow-lg transition-transform hover:scale-105 bg-gray-900">
+                                        <BsGithub className="h-8 w-8 m-2" />
+                                    </Card>
+                                </Link>
+                                <Link href="https://www.linkedin.com/in/erkamkiris/" aria-label="LinkedIn" className="text-foreground/60 hover:text-foreground">
+                                    <Card className="flex flex-col items-center space-x-2 p-4 mx-auto hover:shadow-lg transition-transform hover:scale-105 bg-gray-900">
+                                        <BsLinkedin className="h-8 w-8 m-2" />
+                                    </Card>
+                                </Link>
+                                <Link
+                                    href="/Erkam_Kiris_CV.pdf"
+                                    download="Erkam_Kiris_CV.pdf"
+                                    className="text-foreground/60 hover:text-foreground">
+                                    <Card className="flex flex-col items-center space-x-2 p-4 mx-auto hover:shadow-lg transition-transform hover:scale-105 bg-gray-900">
+                                        <BsDownload className="h-8 w-8 m-2" />
+                                    </Card>
+                                </Link>
+                            </CardContent>
                             <Card>
                                 <CardHeader>
                                     <CardTitle>Send a Message</CardTitle>
@@ -129,7 +127,7 @@ export default function Contact() {
                         </div>
                     </div>
                 </div>
-            </FadeIn>
+            </FadeIn >
         </section >
     );
 }
