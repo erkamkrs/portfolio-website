@@ -37,10 +37,17 @@ export default function Technologies() {
                             Technologies I work with
                         </p>
                     </div>
-                    <Swiper
-                        spaceBetween={30}
+                    <Swiper style={{
+                        "--swiper-pagination-color": "#fff",
+                        "--swiper-navigation-color": "#fff",
+                        "--swiper-pagination-bullet-inactive-color": "#999999",
+                        "--swiper-pagination-bullet-inactive-opacity": "1",
+                        "--swiper-pagination-bullet-size": "12px",
+                        "--swiper-pagination-bullet-horizontal-gap": "6px",
+                    } as React.CSSProperties}
+                        spaceBetween={10}
                         slidesPerView={1}
-                        navigation
+                        navigation={true}
                         pagination={{ clickable: true }}
                         breakpoints={{
                             640: { slidesPerView: 1 },
@@ -48,11 +55,12 @@ export default function Technologies() {
                             1024: { slidesPerView: 1 },
                         }}
                         modules={[Pagination, Navigation]}
-                        className="mx-auto max-w-2xl"
+                        className="mx-auto max-w-xl m-4"
                     >
+
                         {TECHNOLOGIES.map((technology) => (
                             <SwiperSlide key={technology.title} >
-                                <Card className="flex flex-col items-center text-center max-w-sm mx-auto ">
+                                <Card className="flex flex-col items-center text-center max-w-sm mx-auto">
                                     <CardHeader>
                                         <CardTitle className="text-lg">{technology.title}</CardTitle>
                                         <CardDescription >{technology.description}</CardDescription>
