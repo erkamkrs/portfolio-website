@@ -1,10 +1,10 @@
 "use client"
 import React, { useId } from "react";
-import { Mail, Phone, SaveIcon } from "lucide-react";
+import { Mail,} from "lucide-react";
 import { BsGithub, BsLinkedin, BsDownload } from "react-icons/bs";
 import Link from "next/link";
 import ErkamImg from "@/public/developer2.jpg";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { Input, FileInput } from "./ui/input";
@@ -12,7 +12,6 @@ import { sendEmail } from "@/lib/contactEmail";
 import { useForm } from 'react-hook-form';
 import { useToast } from "@/hooks/use-toast"
 import { FadeIn } from "./ui/fadeIn";
-import { Download } from "lucide-react";
 
 // Forwarded TextInput Component
 const TextInput = React.forwardRef<HTMLInputElement, React.ComponentPropsWithoutRef<'input'> & { label: string, onChange: (e: React.ChangeEvent<HTMLInputElement>) => void }>(({
