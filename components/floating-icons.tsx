@@ -6,16 +6,16 @@ import { FaReact, FaPython, FaJs, FaCalculator, FaAngular, FaDatabase } from 're
 import { SiTailwindcss, SiTypescript } from 'react-icons/si'
 
 const icons = [
-    BiBasketball,
-    BiDumbbell,
-    FaReact,
-    FaPython,
-    FaAngular,
-    FaDatabase,
-    FaCalculator,
-    FaJs,
-    SiTailwindcss,
-    SiTypescript
+    BiBasketball, BiBasketball,
+    BiDumbbell, BiDumbbell,
+    FaReact, FaReact,
+    FaPython, FaPython, 
+    FaAngular, FaAngular,
+    FaDatabase, FaDatabase, 
+    FaCalculator, FaCalculator,
+    FaJs, FaJs,
+    SiTailwindcss, SiTailwindcss, 
+    SiTypescript, SiTypescript,
 ]
 
 export function FloatingIcons() {
@@ -36,4 +36,3 @@ export function FloatingIcons() {
         </div>
     )
 }
-
