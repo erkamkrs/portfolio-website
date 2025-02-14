@@ -1,5 +1,6 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
+import React, { useEffect, useState } from 'react';
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { FadeIn } from "../ui/fadeIn";
 
 type Stats = {
@@ -9,6 +10,7 @@ type Stats = {
     blocks: number;
     steals: number;
     additional?: string;
+    threePointers?: number;
     link?: string;
 };
 
@@ -38,18 +40,27 @@ const STATS: { [key: string]: Stats } = {
         steals: 0.7,
         link: "https://baloncestoenvivo.feb.es/jugador/889440/2439563",
     },
-    "2024-25": {
-        points: 14.8,
-        rebounds: 7.9,
-        assists: 2.1,
-        blocks: 0.3,
-        steals: 1.0,
-        additional: "40% 3PT",
-        link: "https://baloncestoenvivo.feb.es/jugador/950826/2439563",
-    },
-}
+};
+
+
 
 export default function Stats() {
+    const [currentStats, setCurrentStats] = useState<Stats | null>(null);
+    const statLink = "https://baloncestoenvivo.feb.es/jugador/950826/2439563"
+    useEffect(() => {
+        async function getStats() {
+            try {
+                const response = await fetch('/api/stats');  // Fetch from Next.js API
+                const stats = await response.json();
+                console.log("Fetched Stats:", stats);
+                setCurrentStats(stats);
+            } catch (error) {
+                console.error("Error fetching stats:", error);
+            }
+        }
+        getStats();
+    }, []);
+
     return (
         <section id="stats" className="container py-8 md:py-12 lg:py-24">
             <FadeIn>
@@ -82,14 +93,27 @@ export default function Stats() {
                                         <TableCell className="font-medium">
                                             <a href={stats.link}>{season}</a>
                                         </TableCell>
-                                        <TableCell>{stats.points}</TableCell>
-                                        <TableCell>{stats.rebounds}</TableCell>
-                                        <TableCell>{stats.assists}</TableCell>
-                                        <TableCell>{stats.blocks}</TableCell>
-                                        <TableCell>{stats.steals}</TableCell>
-                                        <TableCell>{stats.additional || "-"}</TableCell>
+                                        <TableCell><a href={stats.link}>{stats.points}</a></TableCell>
+                                        <TableCell><a href={stats.link}>{stats.rebounds}</a></TableCell>
+                                        <TableCell><a href={stats.link}>{stats.assists}</a></TableCell>
+                                        <TableCell><a href={stats.link}>{stats.blocks}</a></TableCell>
+                                        <TableCell><a href={stats.link}>{stats.steals}</a></TableCell>
+                                        <TableCell><a href={stats.link}>{stats.additional || "-"}</a></TableCell>
                                     </TableRow>
                                 ))}
+                                {currentStats && (
+                                    <TableRow key="2024-25">
+                                        <TableCell className="font-medium">
+                                            <a href="https://baloncestoenvivo.feb.es/jugador/950826/2439563">2024-25</a>
+                                        </TableCell>
+                                        <TableCell><a href={statLink}>{currentStats.points}</a></TableCell>
+                                        <TableCell><a href={statLink}>{currentStats.rebounds}</a></TableCell>
+                                        <TableCell><a href={statLink}>{currentStats.assists}</a></TableCell>
+                                        <TableCell><a href={statLink}>{currentStats.blocks}</a></TableCell>
+                                        <TableCell><a href={statLink}>{currentStats.steals}</a></TableCell>
+                                        <TableCell><a href={statLink}>{currentStats.threePointers}% 3pt</a></TableCell>
+                                    </TableRow>
+                                )}
                             </TableBody>
                         </Table>
                     </CardContent>
