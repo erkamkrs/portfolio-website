@@ -1,7 +1,8 @@
-import { Timeline } from "@/components/timeline"
-import { FadeIn } from "../ui/fadeIn"
+import { useEffect, useState } from "react";
+import { Timeline } from "@/components/timeline";
+import { FadeIn } from "../ui/fadeIn";
 
-const TIMELINE_CONTENT = [
+const STATIC_TIMELINE_CONTENT = [
   {
     year: 2020,
     team: "Davis & Elkins College",
@@ -16,18 +17,43 @@ const TIMELINE_CONTENT = [
   },
   {
     year: "2022-23",
-    team: "CB SANTA CRUZ",
+    team: "CB Santa Cruz",
     league: "EBA",
     stats: "14.5 PPG, 8.6 RPG, 1.6 ASG",
   },
-  {
-    year: "2024-25",
-    team: "CD Baloncesto Zuera",
-    stats: "14.8 PPG, 7.7 RPG, 35% 3PT",
-  },
-]
+];
+
+type SeasonStats = {
+  year: string;
+  team: string;
+  league: string;
+  stats: string;
+};
 
 export default function Experience() {
+  const [currentSeasonStats, setCurrentSeasonStats] = useState<SeasonStats | null>(null);
+
+  useEffect(() => {
+    async function fetchStats() {
+      try {
+        const response = await fetch("/api/stats");
+        const stats = await response.json();
+
+        if (stats && !stats.error) {
+          setCurrentSeasonStats({
+            year: "2024-25",
+            team: "CD Baloncesto Zuera",
+            league: "Tercera FEB",
+            stats: `${stats.points} PPG, ${stats.rebounds} RPG, ${stats.assists} ASG, ${stats.blocks} BPG, ${stats.steals} SPG, ${stats.threePointers}% 3PT`,
+          });
+        }
+      } catch (error) {
+        console.error("Error fetching stats:", error);
+      }
+    }
+    fetchStats();
+  }, []);
+
   return (
     <section id="experience" className="container py-8 md:py-12 lg:py-24">
       <FadeIn>
@@ -37,8 +63,8 @@ export default function Experience() {
             Professional experience
           </p>
         </div>
-        <Timeline contents={TIMELINE_CONTENT} />
+        <Timeline contents={[...STATIC_TIMELINE_CONTENT, ...(currentSeasonStats ? [currentSeasonStats] : [])]} />
       </FadeIn>
-    </section >
-  )
+    </section>
+  );
 }
