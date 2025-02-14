@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import axios from "axios";
 import * as cheerio from "cheerio";
 
-export async function GET(request: NextRequest) {
+export async function GET() {
     try {
         const { data } = await axios.get("https://baloncestoenvivo.feb.es/jugador/950826/2439563");
         const $ = cheerio.load(data);
