@@ -71,7 +71,7 @@ export default function Hero() {
                                     <Link href="#contact">Contact Me</Link>
                                 </Button>
                                 <Button asChild size="sm" variant="ghost" className="text-lg">
-                                    <Link href="#stats">View Stats</Link>
+                                    <Link href="#services">View Services</Link>
                                 </Button>
                             </div>
                         </div>

@@ -98,14 +98,14 @@ export default function Contact() {
                                         <BsLinkedin className="h-8 w-8 m-2" />
                                     </Card>
                                 </Link>
-                                <Link
+                                <a
                                     href="/Erkam_Kiris_CV.pdf"
                                     download="Erkam_Kiris_CV.pdf"
                                     className="text-foreground/60 hover:text-foreground">
                                     <Card className="flex flex-col items-center space-x-2 p-4 mx-auto hover:shadow-lg transition-transform hover:scale-105 bg-gray-900">
                                         <BsDownload className="h-8 w-8 m-2" />
                                     </Card>
-                                </Link>
+                                </a>
                             </CardContent>
                             <Card>
                                 <CardHeader>
