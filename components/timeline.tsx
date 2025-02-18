@@ -88,17 +88,17 @@ export function Timeline({ contents }: TimelineProps) {
             index % 2 === 0 ? "lg:justify-end" : "lg:justify-start"
           }`}
         >
-            <div className="year ml-8 lg:ml-0 text-4xl lg:text-6xl py-2 absolute lg:left-1/2 top-[30%] transform -translate-x-1/2 -translate-y-1/2 z-20 bg-background">
+            <div className="year ml-8 lg:ml-0 text-4xl lg:text-5xl py-2 absolute lg:left-1/2 top-[30%] transform -translate-x-1/2 -translate-y-1/2 z-20 bg-background">
               {content.year}
             </div>
             <div
-              className={`ml-32 lg:ml-4 content ${
+              className={`ml-32 lg:ml-8 content ${
                 index % 2 === 0 ? "lg:ml-12 lg:pl-12 text-left" : "lg:mr-12 lg:pr-12"
               } w-[80%] lg:w-[40%]`}
             >
               {Object.entries(content).map(([key, value]) =>
                 key !== "year" && key !== "id" ? (
-                  <p key={key} className="mb-4 leading-2 text-lg lg:text-xl">
+                  <p key={key} className="mb-4 leading-1 text-lg ">
                     <strong>{key.charAt(0).toUpperCase() + key.slice(1)}:</strong> {value}
                   </p>
                 ) : null

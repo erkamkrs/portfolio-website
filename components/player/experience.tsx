@@ -44,7 +44,7 @@ export default function Experience() {
             year: "2024-25",
             team: "CD Baloncesto Zuera",
             league: "Tercera FEB",
-            stats: `${stats.points} PPG, ${stats.rebounds} RPG, ${stats.assists} ASG, ${stats.blocks} BPG, ${stats.steals} SPG, ${stats.threePointers}% 3PT`,
+            stats: `${stats.points} PPG, ${stats.rebounds} RPG, ${stats.assists} ASG, ${stats.steals} SPG, ${stats.threePointers}% 3PT`,
           });
         }
       } catch (error) {
