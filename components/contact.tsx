@@ -93,7 +93,7 @@ export default function Contact() {
                                         <BsGithub className="h-8 w-8 m-2" />
                                     </Card>
                                 </Link>
-                                <Link href="https://www.linkedin.com/in/erkamkiris/" aria-label="LinkedIn" className="text-foreground/60 hover:text-foreground">
+                                <Link href="https://www.linkedin.com/in/erkam-k-219890110/" aria-label="LinkedIn" className="text-foreground/60 hover:text-foreground">
                                     <Card className="flex flex-col items-center space-x-2 p-4 mx-auto hover:shadow-lg transition-transform hover:scale-105 bg-gray-900">
                                         <BsLinkedin className="h-8 w-8 m-2" />
                                     </Card>
