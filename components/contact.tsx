@@ -74,7 +74,7 @@ export default function Contact() {
             <FadeIn>
                 <div className="mx-auto flex flex-col items-center space-y-4 text-center mb-8">
                     <div className="flex flex-col items-center space-y-4 text-center mb-8">
-                        <h2 className="font-heading text-3xl leading-[1.1] sm:text-3xl md:text-6xl">Contact Me</h2>
+                        <h2 className="font-heading text-3xl leading-[1.1] sm:text-3xl md:text-6xl">Let's Work Together</h2>
                         <p className="max-w-[85%] leading-normal text-muted-foreground sm:text-lg sm:leading-7">
                             Get in touch with me for any inquiries or collaborations
                         </p>
