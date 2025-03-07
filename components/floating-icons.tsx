@@ -30,6 +30,7 @@ export function FloatingIcons() {
                         top: `${Math.random() * 100}%`,
                         fontSize: `${Math.random() * 1 + 1}rem`,
                         animationDelay: `${Math.random() * 10}s`,
+                        animationDuration: `${Math.random() * 5 + 5}s`, // Adjust this value to make the icons float faster
                     }}
                 />
             ))}
