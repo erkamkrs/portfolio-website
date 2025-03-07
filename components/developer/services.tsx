@@ -5,12 +5,12 @@ const SERVICES = [
     {
         title: "Web Development",
         description: "Modern web applications built with Next.js, React, and other cutting-edge technologies",
-        features: ["Full-stack Development", "Responsive Design", "Performance Optimization", "SEO"],
+        features: ["Full-stack Development", "Responsive Design", "Dynamic Rendering", "SEO Optimization"]
     },
     {
         title: "Mobile Development",
         description: "Cross-platform mobile applications for iOS and Android using React Native",
-        features: ["iOS & Android Apps", "Native Performance", "Offline Support", "Push Notifications"],
+        features: ["iOS & Android Apps", "Offline Support", "UI/UX Implementation",  "Performance Optimization"]
     },
     {
         title: "Back End Development",
