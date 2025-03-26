@@ -79,7 +79,7 @@ export default function Technologies() {
                             modules={[Pagination, Navigation]}
                             className="mx-auto max-w-[2000px] py-4 px-4"
                         >
-                            {TECHNOLOGIES.map((technology, index) => (
+                            {TECHNOLOGIES.map((technology) => (
                                 <SwiperSlide key={technology.title}>
                                     {({ isActive }) => (
                                         <div className={cn(
