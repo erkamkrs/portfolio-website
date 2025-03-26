@@ -84,17 +84,17 @@ export default function Contact() {
                         <div className="space-y-4 flex flex-col">
                             <CardContent className="flex flex-row gap-2 items-center justify-between ">
                                 <Link className="text-foreground/60 hover:text-foreground" href="mailto:erkamkiris@gmail.com">
-                                    <Card className="flex flex-col items-center space-x-2 p-4 mx-auto hover:shadow-lg transition-transform hover:scale-105 bg-gray-900">
+                                    <Card className="flex flex-col items-center space-x-2 p-4 mx-auto hover:shadow-lg transition-transform hover:bg-gray-700 bg-gray-900">
                                         <Mail className="h-8 w-8 m-2" />
                                     </Card>
                                 </Link>
                                 <Link href="https://github.com/erkamkrs" aria-label="GitHub" className="text-foreground/60 hover:text-foreground">
-                                    <Card className="flex flex-col items-center space-x-2 p-4 mx-auto hover:shadow-lg transition-transform hover:scale-105 bg-gray-900">
+                                    <Card className="flex flex-col items-center space-x-2 p-4 mx-auto hover:shadow-lg transition-transform hover:bg-gray-700 bg-gray-900">
                                         <BsGithub className="h-8 w-8 m-2" />
                                     </Card>
                                 </Link>
                                 <Link href="https://www.linkedin.com/in/erkam-k-219890110/" aria-label="LinkedIn" className="text-foreground/60 hover:text-foreground">
-                                    <Card className="flex flex-col items-center space-x-2 p-4 mx-auto hover:shadow-lg transition-transform hover:scale-105 bg-gray-900">
+                                    <Card className="flex flex-col items-center space-x-2 p-4 mx-auto hover:shadow-lg transition-transform hover:bg-gray-700 bg-gray-900">
                                         <BsLinkedin className="h-8 w-8 m-2" />
                                     </Card>
                                 </Link>
@@ -102,7 +102,7 @@ export default function Contact() {
                                     href="/Erkam_Kiris_CV.pdf"
                                     download="Erkam_Kiris_CV.pdf"
                                     className="text-foreground/60 hover:text-foreground">
-                                    <Card className="flex flex-col items-center space-x-2 p-4 mx-auto hover:shadow-lg transition-transform hover:scale-105 bg-gray-900">
+                                    <Card className="flex flex-col items-center space-x-2 p-4 mx-auto hover:shadow-lg transition-transform hover:bg-gray-700 bg-gray-900">
                                         <BsDownload className="h-8 w-8 m-2" />
                                     </Card>
                                 </a>
@@ -112,12 +112,12 @@ export default function Contact() {
                                     <CardTitle>Send a Message</CardTitle>
                                 </CardHeader>
                                 <CardContent>
-                                    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-y-6 w-full">
+                                    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-y-6 w-full ">
                                         <TextInput label="Full Name" {...register('name', { required: true })} required />
                                         <TextInput label="Email" type="email" {...register('email', { required: true })} required />
                                         <TextInput label="Message" {...register('message', { required: true })} />
                                         <FileInput type="file"  {...register('attachment')} />
-                                        <Button type="submit" variant={"default"}>
+                                        <Button type="submit" variant={"default"} className="hover:bg-slate-300">
                                             Send
                                         </Button>
                                     </form>
